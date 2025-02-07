@@ -26,7 +26,7 @@
   {
     width: 20vw;
     height: 40vw;
-    
+   
     border-radius: 40px;
     padding: 2vw;
     
@@ -68,14 +68,13 @@
     width: 80vw;
     height: 40vw;
    
-
   }
 
   .nav-container
   {
     width: 80vw;
     height: 15vw;
-   
+    
     border-radius: 40px;
     padding: 2vw;
     display: flex;
@@ -285,4 +284,28 @@
     background: linear-gradient(125deg, #2ecc71, #27ae60, #1abc9c);
     color: white;
     margin-left: 20px;
+}
+
+
+.modaldesc-content
+{
+  
+    display: flex;
+}
+
+.modaldsc-detail
+{
+    
+    margin-left: 20px;
+}
+
+.modaldesc-img
+{
+    width: 20vw;
+    height:20vw ;
+    object-fit: cover;
+    border-radius: 10px;
+
+    
+    
 }
