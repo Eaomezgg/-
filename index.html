@@ -51,7 +51,7 @@
         </div>
 
         <div class="nav-cartprofile">
-            <div onclick="" style="cursor: pointer;" class="nav-profile-cart">
+            <div onclick="opencart()" style="cursor: pointer;" class="nav-profile-cart">
                 <i class="fas fa-cart-shopping"></i>
                 <div id="cart-count" class="cart-count" >
                     0
@@ -70,7 +70,7 @@
 
     <div class="product-container">
 
-        <div onclick="" class="product-items"> 
+        <div onclick="openproductdetail()" class="product-items"> 
             <img src="https://images.unsplash.com/photo-1565802700474-1c8b57596859?q=80&w=1789&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="product-img" alt="">
 
             <div class="product-nameprice">
@@ -82,19 +82,7 @@
 
         </div>
 
-        <div onclick="" class="product-items"> 
-            <img src="https://images.unsplash.com/photo-1565802700474-1c8b57596859?q=80&w=1789&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="product-img" alt="">
-
-            <div class="product-nameprice">
-
-                <div class="font-tea">Macha Tea</div>
-                <div class="font-teaprice">50 bath</div>
-
-            </div>
-            
-        </div>
-
-        <div onclick="" class="product-items"> 
+        <div onclick="openproductdetail()" class="product-items"> 
             <img src="https://images.unsplash.com/photo-1565802700474-1c8b57596859?q=80&w=1789&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="product-img" alt="">
 
             <div class="product-nameprice">
@@ -106,7 +94,19 @@
             
         </div>
 
-        <div onclick="" class="product-items"> 
+        <div onclick="openproductdetail()" class="product-items"> 
+            <img src="https://images.unsplash.com/photo-1565802700474-1c8b57596859?q=80&w=1789&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="product-img" alt="">
+
+            <div class="product-nameprice">
+
+                <div class="font-tea">Macha Tea</div>
+                <div class="font-teaprice">50 bath</div>
+
+            </div>
+            
+        </div>
+
+        <div onclick="openproductdetail()" class="product-items"> 
             <img src="https://images.unsplash.com/photo-1565802700474-1c8b57596859?q=80&w=1789&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="product-img" alt="">
 
             <div class="product-nameprice">
@@ -158,7 +158,7 @@
             </div>
 
             <div class="btn-control">
-                <button onclick="" class="btn">
+                <button onclick="closemodal()" class="btn">
                     Close
                 </button>
 
@@ -178,6 +178,56 @@
 
     
 </div>
+
+
+
+
+<div id="modaldesc" class="modal" style="display: none;">
+    <div onclick="closemodal()" class="modal-bg"></div>
+
+    <div class="modal-page">
+        <h2>Detail</h2>
+        <br>
+
+        <div class="modaldesc-content">
+            
+            <img id="mdd-img" class="modaldesc-img"src="https://images.unsplash.com/photo-1565802700474-1c8b57596859?q=80&w=1789&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+
+
+            <div class="modaldsc-detail">
+                <p id="mdd-name" style="font-size: 1.5vw;">Product Name</p>
+                <p id="mdd-price" style="font-size: 1.2vw;">50THB</p>
+                <br>
+                <p style="color: #a7a7a7;"></p>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="btn-control">
+                    <button onclick="closemodal()" class="btn">
+                        Close
+                    </button>
+
+                    <button onclick="addtocart()" class="btn btn-buy">
+                        Confirm
+                    </button>
+
+                </div>
+
+            </div>
+            
+
+
+        </div>
+
+
+    </div>
+
+    
+ </div>
+
 
 
 
