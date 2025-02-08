@@ -63,7 +63,27 @@
 
 
     <div class="searchbar">
-        <div class="listbar">list</div>
+
+        <div class="listbar">
+
+            <div class="category-dropdown">
+                <div class="category-header" onclick="toggleDropdown()">
+                    <span id="category-name">Coffee & Tea</span>
+                    <i id="dropdown-icon" class="fas fa-chevron-down"></i>
+                </div>
+                <ul id="dropdown-menu" class="dropdown-menu">
+                    <li onclick="searchproduct('CoffeeTea')">Coffee & Tea</li>
+                    <li onclick="searchproduct('FruitSyrups')">Fruit & Syrups</li>
+                    <li onclick="searchproduct('MilkDairy')">Milk & Dairy</li>
+                </ul>
+            </div>
+            
+
+            
+        </div>
+
+
+
         <input type="text" class="serch" placeholder="Search...">
     </div>
     
