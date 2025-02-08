@@ -1,14 +1,6 @@
-function opencart()
-{
-    $('#modalcart').css('display','flex')
-}
 
-function openproductdetail()
+function closemodal()
 {
-    $('#modaldesc').css('display','flex')
-}
-
-function closemodal(){
     $(".modal").css('display','none')
 }
 
@@ -64,7 +56,7 @@ $(document).ready(() => {
     let html = '';
     for (let i = 0; i < product.length; i++) {
         html += `
-            <div onclick="openproductdetail(${product[i].id})" class="product-items ${product[i].type}" data-name="${product[i].name.toLowerCase()}" > 
+            <div onclick="openproductdetail(${i})" class="product-items ${product[i].type}" data-name="${product[i].name.toLowerCase()}" > 
                 <img src="${product[i].img}" class="product-img" alt="">
                 <div class="product-nameprice">
                     <div class="font-tea">${product[i].name}</div>
@@ -98,3 +90,121 @@ function searchproduct(param)
     }
 
 }
+
+var productindex = 0;
+function openproductdetail(index)
+{
+
+    productindex = index;
+    console.log(productindex)
+    $("#modaldesc").css('display','flex')
+    $("#mdd-img").attr('src',product[index].img)
+    $("#mdd-name").text(product[index].name)
+    $("#mdd-price").text(product[index].price + ' bth')
+    
+}
+
+
+
+
+var cart = [];
+function addtocart()
+{
+    var pass = true;
+
+    for (let i = 0; i < cart.length; i++) 
+    {
+       if (productindex == cart[i].index) 
+        {
+            console.log('found saame product')
+        cart[i].count++;
+        pass = false;
+        } 
+        
+    }
+
+    if(pass)
+    {
+        var obj = 
+        {
+            index: productindex,
+            id: product[productindex].id,
+            name: product[productindex].name,
+            price: product[productindex].price,
+            img: product[productindex].img,
+            count: 1
+        };
+        //console.log(obj)
+        cart.push(obj)
+
+    }
+  console.log(cart)
+
+  Swal.fire
+  ({
+    icon: 'success',
+    title: 'Add ' + product[productindex].name + ' to Cart',
+  })
+  $('#cart-count').css('display','flex').text(cart.length)
+
+}
+
+
+function opencart()
+{
+    $('#modalcart').css('display','flex')
+    rendercart()
+}
+
+
+function rendercart()
+{
+    if (cart.length > 0) 
+    {
+       var html ='';
+       for (let i = 0; i < cart.length; i++) 
+       {
+        html += `<div class="cartlist-items">
+                   
+                    <div class="cartlist-left">
+                        <img  src="${cart[i].img}" alt="">
+                        <div class="cartlist-detail">
+                            <p style="font-size: 1.5vw;">${cart[i].name}</p>
+                            <p style="font-size: 1.2vw;">${cart[i].price * cart[i].count} bath</p>
+                        </div>
+                    </div>
+                    
+                    <div class="cartlist-right">
+                        <p onclick="deinitems('-' , ${i})" class="btnc">-</p>
+                        <p id= "countitems${i}" style="margin: 0 20px;">${cart[i].count}</p>
+                        <p onclick="deinitems('+' , ${i})" class="btnc">+</p>
+
+                    </div>
+                </div>`;
+        
+       } 
+       $("#mycart").html(html)
+    }
+    else
+    {
+       $("#mycart").html(`<h3>Not found product-list</h3>`)
+    }
+}
+
+
+
+
+let isDropdownOpen = false;
+
+function toggleDropdown() {
+    const menu = document.getElementById("dropdown-menu");
+    const icon = document.getElementById("dropdown-icon");
+
+   
+    isDropdownOpen = !isDropdownOpen;
+    menu.style.display = isDropdownOpen ? "block" : "none";
+
+   
+    icon.style.transform = isDropdownOpen ? "rotate(180deg)" : "rotate(0deg)";
+}
+
