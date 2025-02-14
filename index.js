@@ -89,6 +89,30 @@ function searchproduct(param)
         $("."+param).css('display','block')
     }
 
+    $(".product-items").hide();
+    $("." + param).show();
+
+    
+    let categoryText = "";
+    switch (param) {
+        case "CoffeeTea":
+            categoryText = "Coffee & Tea";
+            break;
+        case "FruitSyrups":
+            categoryText = "Fruit & Syrups";
+            break;
+        case "MilkDairy":
+            categoryText = "Milk & Dairy";
+            break;
+    }
+    $("#category-name").text(categoryText);
+
+   
+    $("#dropdown-menu").hide();
+    isDropdownOpen = false;
+    $("#dropdown-icon").css("transform", "rotate(0deg)");
+    
+
 }
 
 var productindex = 0;
@@ -157,39 +181,33 @@ function opencart()
 }
 
 
-function rendercart()
-{
-    if (cart.length > 0) 
-    {
-       var html ='';
-       for (let i = 0; i < cart.length; i++) 
-       {
-        html += `<div class="cartlist-items">
-                   
-                    <div class="cartlist-left">
-                        <img  src="${cart[i].img}" alt="">
-                        <div class="cartlist-detail">
-                            <p style="font-size: 1.5vw;">${cart[i].name}</p>
-                            <p style="font-size: 1.2vw;">${cart[i].price * cart[i].count} bath</p>
+function rendercart() {
+    if (cart.length > 0) {
+        var html = '';
+        for (let i = 0; i < cart.length; i++) {
+            html += `<div class="cartlist-items">
+                        <div class="cartlist-left">
+                            <img src="${cart[i].img}" alt="">
+                            <div class="cartlist-detail">
+                                <p style="font-size: 1.5vw;">${cart[i].name}</p>
+                                <p style="font-size: 1.2vw;" id="price${i}">${cart[i].price * cart[i].count} bath</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="cartlist-right">
-                        <p onclick="deinitems('-' , ${i})" class="btnc">-</p>
-                        <p id= "countitems${i}" style="margin: 0 20px;">${cart[i].count}</p>
-                        <p onclick="deinitems('+' , ${i})" class="btnc">+</p>
+                        <div class="cartlist-right">
+                            <p onclick="deinitems('-', ${i})" class="btnc">-</p>
+                            <p id="countitems${i}" style="margin: 0 20px;">${cart[i].count}</p>
+                            <p onclick="deinitems('+', ${i})" class="btnc">+</p>
+                        </div>
+                    </div>`;
+        }
+        $("#mycart").html(html);
+    } else {
+        $("#mycart").html(`<h3>Not found product-list</h3>`);
+    }
 
-                    </div>
-                </div>`;
-        
-       } 
-       $("#mycart").html(html)
-    }
-    else
-    {
-       $("#mycart").html(`<h3>Not found product-list</h3>`)
-    }
+    $("#cart-count").text(cart.length); 
 }
+
 
 
 
@@ -208,3 +226,16 @@ function toggleDropdown() {
     icon.style.transform = isDropdownOpen ? "rotate(180deg)" : "rotate(0deg)";
 }
 
+
+
+function deinitems(action, index) {
+    if (action === '+') {
+        cart[index].count++; 
+    } else if (action === '-' && cart[index].count > 1) {
+        cart[index].count--; 
+    } else if (action === '-' && cart[index].count === 1) {
+        cart.splice(index, 1); 
+    }
+
+    rendercart(); 
+}
