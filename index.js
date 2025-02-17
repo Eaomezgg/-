@@ -132,46 +132,41 @@ function openproductdetail(index)
 
 
 var cart = [];
-function addtocart()
-{
+function addtocart() {
+    var selectedTemp = document.querySelector('input[name="temperature"]:checked').value;
     var pass = true;
 
-    for (let i = 0; i < cart.length; i++) 
-    {
-       if (productindex == cart[i].index) 
-        {
-            console.log('found saame product')
-        cart[i].count++;
-        pass = false;
-        } 
-        
+    for (let i = 0; i < cart.length; i++) {
+        if (productindex == cart[i].index && cart[i].temptype === selectedTemp) {
+            console.log('Found same product with same temperature');
+            cart[i].count++;
+            pass = false;
+        }
     }
 
-    if(pass)
-    {
-        var obj = 
-        {
+    if (pass) {
+        var obj = {
             index: productindex,
             id: product[productindex].id,
             name: product[productindex].name,
             price: product[productindex].price,
             img: product[productindex].img,
-            count: 1
+            count: 1,
+            temptype: selectedTemp  // เก็บค่า Hot, Cold, Blended
         };
-        //console.log(obj)
-        cart.push(obj)
-
+        cart.push(obj);
     }
-  console.log(cart)
 
-  Swal.fire
-  ({
-    icon: 'success',
-    title: 'Add ' + product[productindex].name + ' to Cart',
-  })
-  $('#cart-count').css('display','flex').text(cart.length)
+    console.log(cart);
 
+    Swal.fire({
+        icon: 'success',
+        title: 'Added ' + product[productindex].name + ' (' + selectedTemp + ') to Cart',
+    });
+
+    $('#cart-count').css('display', 'flex').text(cart.length);
 }
+
 
 
 function opencart()
@@ -189,7 +184,7 @@ function rendercart() {
                         <div class="cartlist-left">
                             <img src="${cart[i].img}" alt="">
                             <div class="cartlist-detail">
-                                <p style="font-size: 1.5vw;">${cart[i].name}</p>
+                                <p style="font-size: 1.5vw;">${cart[i].name} (${cart[i].temptype})</p> <!-- แสดง Hot, Cold, Blended -->
                                 <p style="font-size: 1.2vw;" id="price${i}">${cart[i].price * cart[i].count} THB</p>
                             </div>
                         </div>
@@ -205,7 +200,7 @@ function rendercart() {
         $("#mycart").html(`<h3>Not found product-list</h3>`);
     }
 
-    $("#cart-count").text(cart.length); 
+    $("#cart-count").text(cart.length);
 }
 
 
@@ -239,3 +234,16 @@ function deinitems(action, index) {
 
     rendercart(); 
 }
+
+
+document.querySelectorAll('.temp-option').forEach(label => {
+    label.addEventListener('click', function () {
+       
+        document.querySelectorAll('.temp-option').forEach(item => {
+            item.classList.remove('selected');
+        });
+
+       
+        this.classList.add('selected');
+    });
+});
