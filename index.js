@@ -238,12 +238,32 @@ function deinitems(action, index) {
 
 document.querySelectorAll('.temp-option').forEach(label => {
     label.addEventListener('click', function () {
-       
+        console.log("Clicked:", this.textContent.trim()); 
+
+        
         document.querySelectorAll('.temp-option').forEach(item => {
             item.classList.remove('selected');
         });
 
-       
+        
         this.classList.add('selected');
+
+        console.log("Selected class added to:", this.textContent.trim());
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOM Loaded, JavaScript is now running!");
+
+    document.querySelectorAll('.temp-option').forEach(label => {
+        label.addEventListener('click', function () {
+            console.log("Clicked:", this.textContent.trim());
+            document.querySelectorAll('.temp-option').forEach(item => {
+                item.classList.remove('selected');
+            });
+            this.classList.add('selected');
+            console.log("Selected class added to:", this.textContent.trim());
+        });
     });
 });
