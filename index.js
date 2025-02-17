@@ -60,7 +60,7 @@ $(document).ready(() => {
                 <img src="${product[i].img}" class="product-img" alt="">
                 <div class="product-nameprice">
                     <div class="font-tea">${product[i].name}</div>
-                    <div class="font-teaprice">${product[i].price} bath</div>
+                    <div class="font-teaprice">${product[i].price} THB</div>
                 </div>
             </div>`;
     }
@@ -124,7 +124,7 @@ function openproductdetail(index)
     $("#modaldesc").css('display','flex')
     $("#mdd-img").attr('src',product[index].img)
     $("#mdd-name").text(product[index].name)
-    $("#mdd-price").text(product[index].price + ' bth')
+    $("#mdd-price").text(product[index].price + ' THB')
     
 }
 
@@ -190,7 +190,7 @@ function rendercart() {
                             <img src="${cart[i].img}" alt="">
                             <div class="cartlist-detail">
                                 <p style="font-size: 1.5vw;">${cart[i].name}</p>
-                                <p style="font-size: 1.2vw;" id="price${i}">${cart[i].price * cart[i].count} bath</p>
+                                <p style="font-size: 1.2vw;" id="price${i}">${cart[i].price * cart[i].count} THB</p>
                             </div>
                         </div>
                         <div class="cartlist-right">
